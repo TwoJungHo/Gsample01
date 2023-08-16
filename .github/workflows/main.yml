@@ -58,8 +58,6 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: docker run
-      run:
-        docker stop gs01 &&
-        docker rm gs01 &&
-        docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/gsample01 &&
-        docker run -d --name gs01 -p 50005:50005 ${{ secrets.DOCKERHUB_USERNAME }}/gsample01 --restart always
+      run: |
+        docker stop gs01 && docker rm gs01 && docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/gsample01
+        docker run -d --name gs01 -p 50005:50005 ${{ secrets.DOCKERHUB_USERNAME }}/gsample01
